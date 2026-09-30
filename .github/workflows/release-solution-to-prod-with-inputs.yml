@@ -30,14 +30,17 @@ on:
        default: out/release
       
     secrets:
-
       BUILD_ENVIRONMENT_URL:
+        description: 'The secret value for Dev Environment'
         required: true
       PRODUCTION_ENVIRONMENT_URL:
+        description: 'The secret value for Target Environment'
         required: true
       CLIENT_ID:
+        description: 'The secret value for APP_ID'
         required: true
       TENANT_ID:
+        description: 'The secret value for Tenant ID'
         required: true
       envSecret:
         description: 'The secret value for authentication using SPN'
