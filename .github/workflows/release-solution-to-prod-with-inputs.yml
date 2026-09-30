@@ -71,10 +71,10 @@ jobs:
     - name: Import solution as unmanaged to build env
       uses: microsoft/powerplatform-actions/import-solution@v1
       with:
-        environment-url: ${{inputs.BUILD_ENVIRONMENT_URL}}
-        app-id: ${{inputs.CLIENT_ID}}
-        client-secret: ${{ secrets.envSecret }}
-        tenant-id: ${{inputs.TENANT_ID}}
+        environment-url: ${{secrets.PP_ENV_TARGET_URL}}
+        app-id: ${{secrets.PP_APP_ID}}
+        client-secret: ${{ secrets.PP_CLIENT_SECRET}} 
+        tenant-id: ${{ secrets.PP_TENANT_ID}}
         solution-file: ${{ inputs.solution_outbound_folder}}/${{ inputs.solution_name }}.zip
         force-overwrite: true
         publish-changes: true
@@ -82,11 +82,11 @@ jobs:
     - name: Export solution as managed
       uses: microsoft/powerplatform-actions/export-solution@v1
       with:
-        environment-url: ${{inputs.BUILD_ENVIRONMENT_URL}}
-        app-id: ${{inputs.CLIENT_ID}}
-        client-secret: ${{ secrets.envSecret }} 
-        tenant-id: ${{inputs.TENANT_ID}}
-        solution-name: ${{ inputs.solution_name }}
+        environment-url: ${{secrets.PP_ENV_DEV_URL}}
+        app-id: ${{secrets.PP_APP_ID}}
+        client-secret: ${{ secrets.PP_CLIENT_SECRET}} 
+        tenant-id: ${{ secrets.PP_TENANT_ID}}
+        solution-name: 'GilbertoTest'
         managed: true
         solution-output-file: ${{ inputs.solution_shipping_folder}}/${{ inputs.solution_name }}_managed.zip
 
