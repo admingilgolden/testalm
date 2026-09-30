@@ -77,7 +77,9 @@ jobs:
         tenant-id: ${{ secrets.PP_TENANT_ID}}
         solution-file: ${{ inputs.solution_outbound_folder}}/${{ inputs.solution_name }}.zip
         force-overwrite: true
-        publish-changes: true
+        publish-changes: false
+        run-asynchronously: true
+        max-async-wait-time: 360
 
     - name: Export solution as managed
       uses: microsoft/powerplatform-actions/export-solution@v1
@@ -103,7 +105,7 @@ jobs:
       RUNNER_DEBUG: 1
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         lfs: true
 
@@ -115,12 +117,12 @@ jobs:
     - name: Import solution to prod env
       uses: microsoft/powerplatform-actions/import-solution@v1
       with:
-        environment-url: ${{inputs.PRODUCTION_ENVIRONMENT_URL}}
-        app-id: ${{inputs.CLIENT_ID}}
-        client-secret: ${{ secrets.envSecret }}
-        tenant-id: ${{inputs.TENANT_ID}}
+        environment-url: ${{secrets.PP_ENV_TARGET_URL}}
+        app-id: ${{secrets.PP_APP_ID}}
+        client-secret: ${{ secrets.PP_CLIENT_SECRET}} 
+        tenant-id: ${{ secrets.PP_TENANT_ID}}
         solution-file: ${{ inputs.solution_release_folder}}/${{ inputs.solution_name }}_managed.zip
         force-overwrite: true
         publish-changes: true
         run-asynchronously: true
-        max-async-wait-time: 60
+        max-async-wait-time: 360
