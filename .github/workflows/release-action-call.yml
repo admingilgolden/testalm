@@ -14,9 +14,9 @@ jobs:
       #You can specify the solution name here
       solution_name: GilbertoTest
       #Update your values here
-      BUILD_ENVIRONMENT_URL: ${{vars.BUILD_ENV_URL}}
-      PRODUCTION_ENVIRONMENT_URL: ${{vars.PROD_URL}}
-      CLIENT_ID: ${{vars.PPLAT_APP_ID}}
-      TENANT_ID: ${{vars.TENANT_ID}}      
+      BUILD_ENVIRONMENT_URL: ${{secrets.PP_ENV_DEV_URL}}
+      PRODUCTION_ENVIRONMENT_URL: ${{secrets.PP_ENV_TARGET_URL}}
+      CLIENT_ID: ${{secrets.PP_APP_ID}}
+      TENANT_ID: ${{secrets.PP_TENANT_ID}}      
     secrets:
       envSecret: ${{ secrets.PP_CLIENT_SECRET }}
